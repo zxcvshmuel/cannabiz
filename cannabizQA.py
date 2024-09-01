@@ -7,7 +7,7 @@ import re
 
 # Set up Google Gemini AI
 # genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-genai.configure(st.GOOGLE_API_KEY)
+genai.configure(st.secrets["GOOGLE_API_KEY"])
 model = genai.GenerativeModel('gemini-pro')
 
 # Function to get column names from the database
