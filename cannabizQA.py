@@ -48,8 +48,16 @@ def generate_sql_query(question, columns):
 
     # Remove "```sql" and "```"
     filtered_query = re.sub(r'```sql|```|sql', '', response.text)
+    
+    select_index = filtered_query.find("SELECT")
 
-    return filtered_query.strip()
+    # Find the index of the first occurrence of ";"
+    semicolon_index = filtered_query.find(";")
+
+    # Extract the SQL query from "SELECT" to the first semicolon
+    sql_query = filtered_query[select_index:semicolon_index + 1]
+
+    return sql_query.strip()
 
 # Function to execute SQL query and return results
 def execute_query(query):
